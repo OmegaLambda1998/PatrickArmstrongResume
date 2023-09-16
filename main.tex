@@ -19,6 +19,10 @@
 \usepackage[english]{babel}
 \usepackage{tabularx}
 \input{glyphtounicode}
+\usepackage{fontawesome5}
+\usepackage{etoolbox}
+\usepackage{xifthen}
+\usepackage{makecell}
 
 
 %----------FONT OPTIONS----------
@@ -57,6 +61,9 @@
   \vspace{-4pt}\scshape\raggedright\large
 }{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
 
+\titleformat{\subsection}{
+  \vspace{-4pt}\scshape\raggedright\normalsize
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
 % Ensure that generate pdf is machine readable/ATS parsable
 \pdfgentounicode=1
 
@@ -99,84 +106,171 @@
 \newcommand{\resumeItemListStart}{\begin{itemize}}
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
 
+\newcommand{\insertName}{Patrick Armstrong}
+\newcommand{\insertWebsite}{\href{https://www.omegalambda.au/}{\faIcon{globe}~\underline{omegalambda.au}~}}
+\newcommand{\insertEmail}{\href{mailto:patrick.armstrong@anu.edu.au}{\faIcon{envelope}~\underline{patrick.armstrong@anu.edu.au}~}}
+\newcommand{\insertGithub}{\href{https://www.github.com/OmegaLambda1998}{\faIcon{github}~\underline{OmegaLambda1998}~}}
+\newcommand{\insertOrcid}{\href{https://www.orcid.org/000-003-1997-3649}{\faIcon{orcid}~\underline{0000-0003-1997-3649}}}
+
+\newcommand{\educationElement}[4]{%
+    \resumeSubHeadingListStart
+        \resumeSubheading
+            {#1}
+            {#2}
+            {#3}
+            {#4}
+    \resumeSubHeadingListEnd
+}
+
+\newcommand{\experienceElement}[5]{%
+    \resumeSubHeadingListStart
+        \resumeSubheading
+            {#1}
+            {#2}
+            {#3}
+            {#4}
+            \ifthenelse{\isempty{#5}}{}{%
+                \resumeItemListStart
+                    \renewcommand*{\do}[1]{\resumeItem{##1}}
+                    \docsvlist{#5}%
+                \resumeItemListEnd
+            }%
+    \resumeSubHeadingListEnd
+}
+
+\newcommand{\awardElement}[5]{%
+    \resumeSubHeadingListStart
+        \resumeSubheading
+            {#1}
+            {#2}
+            {#3}
+            {#4}
+            \ifthenelse{\isempty{#5}}{}{%
+                \resumeItemListStart
+                    \renewcommand*{\do}[1]{\resumeItem{##1}}
+                    \docsvlist{#5}%
+                \resumeItemListEnd
+            }%
+    \resumeSubHeadingListEnd
+}
+
+\newcommand{\conferenceElement}[5]{%
+    \resumeSubHeadingListStart
+        \resumeSubheading
+            {#1}
+            {#2}
+            {#3}
+            {#4}
+            \ifthenelse{\isempty{#5}}{}{%
+                \resumeItemListStart
+                    \renewcommand*{\do}[1]{\resumeItem{##1}}
+                    \docsvlist{#5}%
+                \resumeItemListEnd
+            }%
+    \resumeSubHeadingListEnd
+}
+
+\newcommand{\communicationElement}[5]{%
+    \resumeSubHeadingListStart
+        \resumeSubheading
+            {\makecell[l]{#1}}
+            {\makecell[r]{#2}}
+            {\makecell[l]{#3}}
+            {\makecell[r]{#4}}
+            \ifthenelse{\isempty{#5}}{}{%
+                \resumeItemListStart
+                    \renewcommand*{\do}[1]{\resumeItem{##1}}
+                    \docsvlist{#5}%
+                \resumeItemListEnd
+            }%
+    \resumeSubHeadingListEnd
+}
+
+\newcommand{\publicationElement}[5]{%
+    \resumeSubHeadingListStart
+        \resumeSubheading
+            {#1}
+            {#2}
+            {#3}
+            {#4}
+            \ifthenelse{\isempty{#5}}{}{%
+                \resumeItemListStart
+                    \renewcommand*{\do}[1]{\resumeItem{##1}}
+                    \docsvlist{#5}%
+                \resumeItemListEnd
+            }%
+    \resumeSubHeadingListEnd
+}
+
 %-------------------------------------------
 %%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \begin{document}
 
-%----------HEADING----------
-% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-%   \textbf{\href{http://sourabhbajaj.com/}{\Large Sourabh Bajaj}} & Email : \href{mailto:sourabh@sourabhbajaj.com}{sourabh@sourabhbajaj.com}\\
-%   \href{http://sourabhbajaj.com/}{http://www.sourabhbajaj.com} & Mobile : +1-123-456-7890 \\
-% \end{tabular*}
-
 \begin{center}
-    \textbf{\Huge \scshape Jake Ryan} \\ \vspace{1pt}
-    \small 123-456-7890 $|$ \href{mailto:x@x.com}{\underline{jake@su.edu}} $|$ 
-    \href{https://linkedin.com/in/...}{\underline{linkedin.com/in/jake}} $|$
-    \href{https://github.com/...}{\underline{github.com/jake}}
+    \textbf{\Huge \scshape \insertName} \\ \vspace{2pt}
+    \insertWebsite $|$ \insertEmail $|$ 
+    \insertGithub $|$
+    \insertOrcid
 \end{center}
 
 
 %-----------EDUCATION-----------
 \section{Education}
-  \resumeSubHeadingListStart
-    \resumeSubheading
-      {Southwestern University}{Georgetown, TX}
-      {Bachelor of Arts in Computer Science, Minor in Business}{Aug. 2018 -- May 2021}
-    \resumeSubheading
-      {Blinn College}{Bryan, TX}
-      {Associate's in Liberal Arts}{Aug. 2014 -- May 2018}
-  \resumeSubHeadingListEnd
+  \educationElement{Doctor of Philosophy (Astronomy \& Astrophysics)}{Australian National University}{February 2020 -- Present}{}
+  \educationElement{Bachelor of Science (Adv.) (Hon.)}{Australian National University}{February 2016 -- October 2019}{}
 
 
 %-----------EXPERIENCE-----------
 \section{Experience}
-  \resumeSubHeadingListStart
 
-    \resumeSubheading
-      {Undergraduate Research Assistant}{June 2020 -- Present}
-      {Texas A\&M University}{College Station, TX}
-      \resumeItemListStart
-        \resumeItem{Developed a REST API using FastAPI and PostgreSQL to store data from learning management systems}
-        \resumeItem{Developed a full-stack web application using Flask, React, PostgreSQL and Docker to analyze GitHub data}
-        \resumeItem{Explored ways to visualize GitHub collaboration in a classroom setting}
-      \resumeItemListEnd
-      
-% -----------Multiple Positions Heading-----------
-%    \resumeSubSubheading
-%     {Software Engineer I}{Oct 2014 - Sep 2016}
-%     \resumeItemListStart
-%        \resumeItem{Apache Beam}
-%          {Apache Beam is a unified model for defining both batch and streaming data-parallel processing pipelines}
-%     \resumeItemListEnd
-%    \resumeSubHeadingListEnd
-%-------------------------------------------
+    \experienceElement{DES Builder}{Dark Energy Survey}{July 2023 -- Present}{}{Develop \& maintain the~\href{https://github.com/dessn/Pippin}{\underline{Pippin}} pipeline, Internal review of DES papers, Organise \& host meetings}
 
-    \resumeSubheading
-      {Information Technology Support Specialist}{Sep. 2018 -- Present}
-      {Southwestern University}{Georgetown, TX}
-      \resumeItemListStart
-        \resumeItem{Communicate with managers to set up campus computers used on campus}
-        \resumeItem{Assess and troubleshoot computer problems brought by students, faculty and staff}
-        \resumeItem{Maintain upkeep of computers, classroom equipment, and 200 printers across campus}
-    \resumeItemListEnd
+    \experienceElement{MSATT Student Mentor}{MSATT}{February 2020 -- Present}{}{Provide guidance and mentorship for highschool students completing astronomical projects}
 
-    \resumeSubheading
-      {Artificial Intelligence Research Assistant}{May 2019 -- July 2019}
-      {Southwestern University}{Georgetown, TX}
-      \resumeItemListStart
-        \resumeItem{Explored methods to generate video game dungeons based off of \emph{The Legend of Zelda}}
-        \resumeItem{Developed a game in Java to test the generated dungeons}
-        \resumeItem{Contributed 50K+ lines of code to an established codebase via Git}
-        \resumeItem{Conducted  a human subject study to determine which video game dungeon generation technique is enjoyable}
-        \resumeItem{Wrote an 8-page paper and gave multiple presentations on-campus}
-        \resumeItem{Presented virtually to the World Conference on Computational Intelligence}
-      \resumeItemListEnd
+    \experienceElement{Astronomical Tutor}{Australian National University}{July 2019 -- October 2022}{}{Sole tutor for~\textit{Galaxies and Cosmology (ASTR3002)}}
 
-  \resumeSubHeadingListEnd
+    \experienceElement{Student Seminar Planning Committee Member}{Australian National University}{February 2021 -- October 2022}{}{[2022]: Senior planning committee member, [2021]: Planning committee member}
 
+    \experienceElement{Mt. Stromlo Outreach Officer}{Australian National University}{January 2018 -- December 2022}{}{Deliver high quality outreach experience for school groups and families}
+
+    \experienceElement{Astronomical Consultant}{}{October 2018 -- December 2020}{}{[2020] Research for Questacon's~\textit{Australia in Space} exhibition, [2019] Research for Penguin Random House's~\textit{Stargazer} publication, [2018] Research and preparation for ABC's Stargazing Live 2018, [2018] Building backend code and moderation for the Skymapper Citizen Science Project: Supernova Sighting}
+
+    \experienceElement{Questacon Staff}{Questacon}{January 2015 -- December 2020}{}{[2019 -- 2020] Learning Programs Presenter (APS 4), [2016 -- 2019] Questacon Assistant (APS 2), [2015 -- 2019] Gallery Assistant (APS 1)}
+
+
+\section{Awards \& Scholarships}
+
+    \awardElement{Alex Rodgers Travelling Scholarship}{ANU College of Science}{2022}{}{Travel to DES Collaboration Meeting 2022}
+    
+    \awardElement{Commendation for Excellence in Tutoring or Demonstrating}{ANU College of Science}{2022}{}{Tutoring~\textit{Galaxies and Cosmology (ASTR3002)}}
+    
+    \awardElement{Australian Government Research Training Program}{Australian National University}{2020 -- Present}{}{PhD Scholarship}
+    
+    \awardElement{RSAA Supplementary Scholarship}{Australian National University}{2020 -- Present}{}{PhD Scholarship}
+    
+    \awardElement{ANU Science, Health, and Medicine Honours Scholarship}{Australian National University}{2019}{}{Honours Scholarship}
+    
+    \awardElement{ANU Summer Research Scholarship}{Australian National University}{2016}{}{Develop a TNS Bulk Report API for the SkyMapper Transient Survey}
+    
+    \awardElement{Boyapti Computer Science and Mathematics prize for first year}{Australian National University}{2016}{}{Top grades in mathematics and computing}
+
+\section{Conference}
+
+    \conferenceElement{DES Collaboration Meeting}{Invited Speaker}{2020, 2021, 2022, 2023}{DES 5 year supernova analysis}{}
+    \conferenceElement{ASA Annual Science Meeting}{Speaker}{2020, 2021, 2022, 2023}{DES 5 year supernova analysis}{}
+    \conferenceElement{Kepler K2 Extragalactic Data Analysis Meeting}{Attendee}{2018}{Investigating transients in Kepler's K2 survey}{}
+
+\section{Communcation}
+
+    \communicationElement{SN2017jgh: a high-cadence complete\\shock cooling light curve of a SN IIb\\with the Kepler telescope}{Over 180 items in print, radio, and online,\\across Australia and internationally}{2021}{}{\textbf{Highlights:}, Al Jazeera, National Geographic Indonesia, Radio Canada, De Morgen, ABC Science online, The Guardian, Space Australia, Sky News Australia, 2GB and on the AAP wires}
+
+\section{Publications}
+
+    \subsection{First Author}
+
+    \subsection{Co-Author}
 
 %-----------PROJECTS-----------
 \section{Projects}
