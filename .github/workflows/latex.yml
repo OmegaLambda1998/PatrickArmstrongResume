@@ -16,8 +16,8 @@ jobs:
         uses: xu-cheng/latex-action@master
         with:
           root_file: main.tex
-      - name: Upload PDF file
-        uses: actions/upload-artifact@master
-        with:
-          name: PDF
-          path: main.pdf
+      - name: Configure Git and push changes
+        run: |
+          git add main.pdf
+          git commit -m "Add main.pdf"
+          git push
