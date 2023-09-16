@@ -18,6 +18,8 @@ jobs:
           root_file: main.tex
       - name: Configure Git and push changes
         run: |
+          git config --global user.email "patrick.armstrong@anu.edu.au"
+          git config --global user.name "Patrick Armstrong"
           git add main.pdf
           git commit -m "Add main.pdf"
           git push
