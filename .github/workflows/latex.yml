@@ -23,3 +23,5 @@ jobs:
           git add main.pdf
           git commit -m "Add main.pdf"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
