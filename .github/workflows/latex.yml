@@ -13,10 +13,13 @@ jobs:
     steps:
       - name: Set up Git repository
         uses: actions/checkout@master
-      - name: run all python scripts 
+      - name: Set up Python
+        uses: actions/setup-python@master
+        with:
+          python-version: 3.11
+      - name: Run all python scripts 
         run: |
-          echo $PATH
-          . .venv/bin/activate
+          source venv/bin/activate
           python get_papers.py -id "0000-0003-1997-3649"
           python papers_to_tex.py -i papers.json -o main.tex -a "Patrick Armstrong"
         shell: sh
