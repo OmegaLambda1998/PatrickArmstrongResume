@@ -189,10 +189,10 @@
 \newcommand{\publicationElement}[5]{%
     \resumeSubHeadingListStart
         \resumeSubheading
-            {#1}
-            {#2}
-            {#3}
-            {#4}
+            {\makecell[l]{#1}}
+            {\makecell[r]{#2}}
+            {\makecell[l]{#3}}
+            {\makecell[r]{#4}}
             \ifthenelse{\isempty{#5}}{}{%
                 \resumeItemListStart
                     \renewcommand*{\do}[1]{\resumeItem{##1}}

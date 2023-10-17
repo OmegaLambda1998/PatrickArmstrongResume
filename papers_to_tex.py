@@ -79,7 +79,7 @@ def add_first_author(output, first_articles, first_other):
     with open("complete_" + output, 'w') as f:
         f.write(result)
 
-def add_co_author(output, co_articles, co_other):
+def add_co_author(output, co_articles, co_other, auth):
     with open(output, 'r') as f:
         lines = f.readlines()
     start_ind = [i for i in range(len(lines)) if "Co-Author" in lines[i]][0]
@@ -88,8 +88,17 @@ def add_co_author(output, co_articles, co_other):
         title = wrap_element(article["title"], 27)
         journal = wrap_element(article["journal"], 27)
         author_list = article["authors"]
-        if len(author_list) > 2:
-            author_list = ", ".join(author_list[:2]).replace("'", "") + ", et. al."
+        ind = [i for i in range(len(author_list)) if author_list[i] == auth][0] + 1
+
+        # auth is author 2 or 3
+        if ind <= 2:
+            if len(author_list) > 2:
+                author_list = ", ".join(author_list[:2]).replace("'", "") + ", et. al."
+            else:
+                author_list = ", ".join(author_list)
+        # auth is author 4+
+        else:
+            author_list = ", ".join(author_list[:2]) + ", ..., " + auth + ", et. al."
         author_list = wrap_element(author_list, 27)
         year = article["last-modified-date"].split('-')[0]
         s.append(f"        \\publicationElement{{{title}}}{{{journal}}}{{{author_list}}}{{{year}}}{{}}\n")
@@ -153,7 +162,7 @@ def main(args):
     print(f"Found {len(co_other)} co-author reports")
 
     add_first_author(args.output, first_articles, first_other)
-    add_co_author("complete_" + args.output, co_articles, co_other)
+    add_co_author("complete_" + args.output, co_articles, co_other, author[0])
 
     
 
