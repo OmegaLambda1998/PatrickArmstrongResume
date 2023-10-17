@@ -66,7 +66,7 @@ def add_first_author(output, first_articles, first_other):
             author_list = ", ".join(author_list[:2]).replace("'", "") + ", et. al."
         author_list = wrap_element(author_list, 27)
         year = article["last-modified-date"].split('-')[0]
-        s.append(f"        \\publicationElement{{{title}}}{{{journal}}}{{{author_list}}}{{{year}}}\n")
+        s.append(f"        \\publicationElement{{{title}}}{{{journal}}}{{{author_list}}}{{{year}}}{{}}\n")
     for article in first_other:
         title = wrap_element(article["title"], 27)
         journal = wrap_element(article["journal"], 27)
@@ -74,7 +74,7 @@ def add_first_author(output, first_articles, first_other):
         if len(author_list) > 2:
             author_list = ", ".join(author_list[:2]).replace("'", "") + ", et. al."
         year = article["last-modified-date"].split('-')[0]
-        s.append(f"        \\publicationElement{{{title}}}{{{journal}}}{{{author_list}}}{{{year}}}\n")
+        s.append(f"        \\publicationElement{{{title}}}{{{journal}}}{{{author_list}}}{{{year}}}{{}}\n")
     result = "".join(lines[:start_ind+1] + s + lines[start_ind+1:])
     with open("complete_" + output, 'w') as f:
         f.write(result)
@@ -92,7 +92,7 @@ def add_co_author(output, co_articles, co_other):
             author_list = ", ".join(author_list[:2]).replace("'", "") + ", et. al."
         author_list = wrap_element(author_list, 27)
         year = article["last-modified-date"].split('-')[0]
-        s.append(f"        \\publicationElement{{{title}}}{{{journal}}}{{{author_list}}}{{{year}}}\n")
+        s.append(f"        \\publicationElement{{{title}}}{{{journal}}}{{{author_list}}}{{{year}}}{{}}\n")
     for article in co_other:
         title = wrap_element(article["title"], 27)
         journal = wrap_element(article["journal"], 27)
@@ -100,7 +100,7 @@ def add_co_author(output, co_articles, co_other):
         if len(author_list) > 2:
             author_list = ", ".join(author_list[:2]).replace("'", "") + ", et. al."
         year = article["last-modified-date"].split('-')[0]
-        s.append(f"        \\publicationElement{{{title}}}{{{journal}}}{{{author_list}}}{{{year}}}\n")
+        s.append(f"        \\publicationElement{{{title}}}{{{journal}}}{{{author_list}}}{{{year}}}{{}}\n")
     result = "".join(lines[:start_ind+1] + s + lines[start_ind+1:])
     with open(output, 'w') as f:
         f.write(result)
