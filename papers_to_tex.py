@@ -61,6 +61,17 @@ def add_first_author(output, first_articles, first_other):
     for article in first_articles:
         title = wrap_element(article["title"], 27)
         journal = wrap_element(article["journal"], 27)
+        id = ""
+        if "doi" in article.keys():
+            doi = article["doi"]
+            id = "\\\\doi: " + f"\\href{{https://doi.org/{doi}}}{{\\underline{{{doi}}}}}" 
+        elif "bibcode" in article.keys():
+            bibcode = article["bibcode"]
+            id = "\\\\bibcode: " + f"\\href{{https://ui.adsabs.harvard.edu/abs/{bibcode}/abstract}}{{\\underline{{{bibcode}}}}}"
+        elif "arxiv" in article.keys():
+            arxiv = article["arxiv"]
+            id = "\\\\arxiv: " + f"\\href{{https://arxiv.org/abs/{arxiv}}}{{\\underline{{{arxiv}}}}}" 
+        journal += id
         author_list = article["authors"]
         if len(author_list) > 2:
             author_list = ", ".join(author_list[:2]).replace("'", "") + ", et. al."
@@ -70,6 +81,18 @@ def add_first_author(output, first_articles, first_other):
     for article in first_other:
         title = wrap_element(article["title"], 27)
         journal = wrap_element(article["journal"], 27)
+        id = ""
+        if "doi" in article.keys():
+            doi = article["doi"]
+            id = "\\\\doi: " + f"\\href{{https://doi.org/{doi}}}{{\\underline{{{doi}}}}}" 
+        elif "bibcode" in article.keys():
+            bibcode = article["bibcode"]
+            id = "\\\\bibcode: " + f"\\href{{https://ui.adsabs.harvard.edu/abs/{bibcode}/abstract}}{{\\underline{{{bibcode}}}}}"
+        elif "arxiv" in article.keys():
+            arxiv = article["arxiv"]
+            id = "\\\\arxiv: " + f"\\href{{https://arxiv.org/abs/{arxiv}}}{{\\underline{{{arxiv}}}}}" 
+        journal += id
+
         author_list = article["authors"]
         if len(author_list) > 2:
             author_list = ", ".join(author_list[:2]).replace("'", "") + ", et. al."
@@ -87,6 +110,17 @@ def add_co_author(output, co_articles, co_other, auth):
     for article in co_articles:
         title = wrap_element(article["title"], 27)
         journal = wrap_element(article["journal"], 27)
+        id = ""
+        if "doi" in article.keys():
+            doi = article["doi"]
+            id = "\\\\doi: " + f"\\href{{https://doi.org/{doi}}}{{\\underline{{{doi}}}}}" 
+        elif "bibcode" in article.keys():
+            bibcode = article["bibcode"]
+            id = "\\\\bibcode: " + f"\\href{{https://ui.adsabs.harvard.edu/abs/{bibcode}/abstract}}{{\\underline{{{bibcode}}}}}"
+        elif "arxiv" in article.keys():
+            arxiv = article["arxiv"]
+            id = "\\\\arxiv: " + f"\\href{{https://arxiv.org/abs/{arxiv}}}{{\\underline{{{arxiv}}}}}" 
+        journal += id
         author_list = article["authors"]
         ind = [i for i in range(len(author_list)) if author_list[i] == auth][0] + 1
 
@@ -100,16 +134,62 @@ def add_co_author(output, co_articles, co_other, auth):
         else:
             author_list = ", ".join(author_list[:2]) + ", ..., " + auth + ", et. al."
         author_list = wrap_element(author_list, 27)
+
         year = article["last-modified-date"].split('-')[0]
         s.append(f"        \\publicationElement{{{title}}}{{{journal}}}{{{author_list}}}{{{year}}}{{}}\n")
+    groups = {}
     for article in co_other:
-        title = wrap_element(article["title"], 27)
-        journal = wrap_element(article["journal"], 27)
-        author_list = article["authors"]
-        if len(author_list) > 2:
-            author_list = ", ".join(author_list[:2]).replace("'", "") + ", et. al."
-        year = article["last-modified-date"].split('-')[0]
-        s.append(f"        \\publicationElement{{{title}}}{{{journal}}}{{{author_list}}}{{{year}}}{{}}\n")
+        title = article["title"]
+        pre_title = " ".join(title.split()[:-1])
+        if pre_title not in groups.keys():
+            groups[pre_title] = []
+        groups[pre_title].append(article)
+    for (name, group) in groups.items():
+        if len(group) == 1:
+            title = wrap_element(group[0]["title"], 27)
+            journal = wrap_element(group[0]["journal"], 27)
+            id = ""
+            if "doi" in article.keys():
+                doi = article["doi"]
+                id = "\\\\doi: " + f"\\href{{https://doi.org/{doi}}}{{\\underline{{{doi}}}}}" 
+            elif "bibcode" in article.keys():
+                bibcode = article["bibcode"]
+                id = "\\\\bibcode: " + f"\\href{{https://ui.adsabs.harvard.edu/abs/{bibcode}/abstract}}{{\\underline{{{bibcode}}}}}"
+            elif "arxiv" in article.keys():
+                arxiv = article["arxiv"]
+                id = "\\\\arxiv: " + f"\\href{{https://arxiv.org/abs/{arxiv}}}{{\\underline{{{arxiv}}}}}" 
+            journal += id
+
+            author_list = group[0]["authors"]
+            # auth is author 2 or 3
+            if ind <= 2:
+                if len(author_list) > 2:
+                    author_list = ", ".join(author_list[:2]).replace("'", "") + ", et. al."
+                else:
+                    author_list = ", ".join(author_list)
+            # auth is author 4+
+            else:
+                author_list = ", ".join(author_list[:2]) + ", ..., " + auth + ", et. al."
+            author_list = wrap_element(author_list, 27)
+            year = group[0]["last-modified-date"].split('-')[0]
+            s.append(f"        \\publicationElement{{{title}}}{{{journal}}}{{{author_list}}}{{{year}}}{{}}\n")
+        else:
+            name = wrap_element(name.replace(" for", ""), 27)
+            journal = wrap_element(group[0]["journal"], 27)
+            author_list = group[0]["authors"]
+            # auth is author 2 or 3
+            if ind <= 2:
+                if len(author_list) > 2:
+                    author_list = ", ".join(author_list[:2]).replace("'", "") + ", et. al."
+                else:
+                    author_list = ", ".join(author_list)
+            # auth is author 4+
+            else:
+                author_list = ", ".join(author_list[:2]) + ", ..., " + auth + ", et. al."
+            author_list = wrap_element(author_list, 27)
+            year = group[0]["last-modified-date"].split('-')[0]
+            dates = ", ".join([g["title"].split()[-1] for g in group])
+            s.append(f"        \\publicationElement{{{name}}}{{{journal}}}{{{author_list}}}{{{year}}}{{{dates}}}\n")
     result = "".join(lines[:start_ind+1] + s + lines[start_ind+1:])
     with open(output, 'w') as f:
         f.write(result)
