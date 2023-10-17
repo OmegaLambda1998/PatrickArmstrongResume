@@ -20,8 +20,6 @@ jobs:
       - name: Run all python scripts 
         run: |
           pip install --upgrade pip
-          python3.11 -m venv ./venv
-          source ./venv/bin/activate
           pip install -r requirements.txt
           python get_papers.py -id "0000-0003-1997-3649"
           python papers_to_tex.py -i papers.json -o main.tex -a "Patrick Armstrong"
