@@ -13,14 +13,11 @@ jobs:
     steps:
       - name: Set up Git repository
         uses: actions/checkout@master
-      - name: activate venv
-        run: source .venv/bin/activate
-        shell: sh
-      - name: Create papers.json
-        run: python get_papers.py -id "0000-0003-1997-3649"
-        shell: sh
-      - name: Convert papers.json to tex
-        run: python papers_to_tex.py -i papers.json -o main.tex -a "Patrick Armstrong"
+      - name: run all python scripts 
+        run: |
+          . .venv/bin/activate
+          python get_papers.py -id "0000-0003-1997-3649"
+          python papers_to_tex.py -i papers.json -o main.tex -a "Patrick Armstrong"
         shell: sh
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@master
