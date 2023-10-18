@@ -37,3 +37,5 @@ jobs:
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ADS_DEV_KEY: ${{ secrets.ADS_DEV_KEY }}
+
