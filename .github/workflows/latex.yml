@@ -34,7 +34,7 @@ jobs:
         run: |
           git config --global user.email "patrick.armstrong@anu.edu.au"
           git config --global user.name "Patrick Armstrong"
-          git add main.pdf
+          git add complete_main.pdf
           git commit -m "Add complete_main.pdf"
           git push
         env:
