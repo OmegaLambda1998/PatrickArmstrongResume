@@ -24,6 +24,8 @@ jobs:
           python get_papers.py -id "0000-0003-1997-3649"
           python papers_to_tex.py -i papers.json -o main.tex -a "Patrick Armstrong"
         shell: sh
+        env:
+          ADS_DEV_KEY: ${{ secrets.ADS_DEV_KEY }}
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@master
         with:
@@ -37,5 +39,4 @@ jobs:
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ADS_DEV_KEY: ${{ secrets.ADS_DEV_KEY }}
 
