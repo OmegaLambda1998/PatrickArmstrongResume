@@ -64,40 +64,38 @@ def add_first_author(output, first_articles, first_other):
         id = ""
         if "doi" in article.keys():
             doi = article["doi"]
-            id = "\\\\doi: " + f"\\href{{https://doi.org/{doi}}}{{\\underline{{{doi}}}}}" 
+            id = "doi: " + f"\\href{{https://doi.org/{doi}}}{{\\underline{{{doi}}}}}" 
         elif "bibcode" in article.keys():
             bibcode = article["bibcode"]
-            id = "\\\\bibcode: " + f"\\href{{https://ui.adsabs.harvard.edu/abs/{bibcode}/abstract}}{{\\underline{{{bibcode}}}}}"
+            id = "bibcode: " + f"\\href{{https://ui.adsabs.harvard.edu/abs/{bibcode}/abstract}}{{\\underline{{{bibcode}}}}}"
         elif "arxiv" in article.keys():
             arxiv = article["arxiv"]
-            id = "\\\\arxiv: " + f"\\href{{https://arxiv.org/abs/{arxiv}}}{{\\underline{{{arxiv}}}}}" 
-        journal += id
+            id = "arxiv: " + f"\\href{{https://arxiv.org/abs/{arxiv}}}{{\\underline{{{arxiv}}}}}" 
         author_list = article["authors"]
         if len(author_list) > 2:
             author_list = ", ".join(author_list[:2]).replace("'", "") + ", et. al."
         author_list = wrap_element(author_list, 27)
         year = article["last-modified-date"].split('-')[0]
-        s.append(f"        \\publicationElement{{{title}}}{{{journal}}}{{{author_list}}}{{{year}}}{{}}\n")
+        s.append(f"        \\publicationElement{{{title}}}{{{journal}}}{{{author_list} ({year})}}{{{id}}}{{}}\n")
     for article in first_other:
         title = wrap_element(article["title"], 27)
         journal = wrap_element(article["journal"], 27)
         id = ""
         if "doi" in article.keys():
             doi = article["doi"]
-            id = "\\\\doi: " + f"\\href{{https://doi.org/{doi}}}{{\\underline{{{doi}}}}}" 
+            id = "doi: " + f"\\href{{https://doi.org/{doi}}}{{\\underline{{{doi}}}}}" 
         elif "bibcode" in article.keys():
             bibcode = article["bibcode"]
-            id = "\\\\bibcode: " + f"\\href{{https://ui.adsabs.harvard.edu/abs/{bibcode}/abstract}}{{\\underline{{{bibcode}}}}}"
+            id = "bibcode: " + f"\\href{{https://ui.adsabs.harvard.edu/abs/{bibcode}/abstract}}{{\\underline{{{bibcode}}}}}"
         elif "arxiv" in article.keys():
             arxiv = article["arxiv"]
-            id = "\\\\arxiv: " + f"\\href{{https://arxiv.org/abs/{arxiv}}}{{\\underline{{{arxiv}}}}}" 
-        journal += id
+            id = "arxiv: " + f"\\href{{https://arxiv.org/abs/{arxiv}}}{{\\underline{{{arxiv}}}}}" 
 
         author_list = article["authors"]
         if len(author_list) > 2:
             author_list = ", ".join(author_list[:2]).replace("'", "") + ", et. al."
         year = article["last-modified-date"].split('-')[0]
-        s.append(f"        \\publicationElement{{{title}}}{{{journal}}}{{{author_list}}}{{{year}}}{{}}\n")
+        s.append(f"        \\publicationElement{{{title}}}{{{journal}}}{{{author_list} ({year})}}{{{id}}}{{}}\n")
     result = "".join(lines[:start_ind+1] + s + lines[start_ind+1:])
     with open("complete_" + output, 'w') as f:
         f.write(result)
@@ -113,14 +111,13 @@ def add_co_author(output, co_articles, co_other, auth):
         id = ""
         if "doi" in article.keys():
             doi = article["doi"]
-            id = "\\\\doi: " + f"\\href{{https://doi.org/{doi}}}{{\\underline{{{doi}}}}}" 
+            id = "doi: " + f"\\href{{https://doi.org/{doi}}}{{\\underline{{{doi}}}}}" 
         elif "bibcode" in article.keys():
             bibcode = article["bibcode"]
-            id = "\\\\bibcode: " + f"\\href{{https://ui.adsabs.harvard.edu/abs/{bibcode}/abstract}}{{\\underline{{{bibcode}}}}}"
+            id = "bibcode: " + f"\\href{{https://ui.adsabs.harvard.edu/abs/{bibcode}/abstract}}{{\\underline{{{bibcode}}}}}"
         elif "arxiv" in article.keys():
             arxiv = article["arxiv"]
-            id = "\\\\arxiv: " + f"\\href{{https://arxiv.org/abs/{arxiv}}}{{\\underline{{{arxiv}}}}}" 
-        journal += id
+            id = "arxiv: " + f"\\href{{https://arxiv.org/abs/{arxiv}}}{{\\underline{{{arxiv}}}}}" 
         author_list = article["authors"]
         ind = [i for i in range(len(author_list)) if author_list[i] == auth][0] + 1
 
@@ -136,7 +133,7 @@ def add_co_author(output, co_articles, co_other, auth):
         author_list = wrap_element(author_list, 27)
 
         year = article["last-modified-date"].split('-')[0]
-        s.append(f"        \\publicationElement{{{title}}}{{{journal}}}{{{author_list}}}{{{year}}}{{}}\n")
+        s.append(f"        \\publicationElement{{{title}}}{{{journal}}}{{{author_list} ({year})}}{{{id}}}{{}}\n")
     groups = {}
     for article in co_other:
         title = article["title"]
@@ -151,14 +148,13 @@ def add_co_author(output, co_articles, co_other, auth):
             id = ""
             if "doi" in article.keys():
                 doi = article["doi"]
-                id = "\\\\doi: " + f"\\href{{https://doi.org/{doi}}}{{\\underline{{{doi}}}}}" 
+                id = "doi: " + f"\\href{{https://doi.org/{doi}}}{{\\underline{{{doi}}}}}" 
             elif "bibcode" in article.keys():
                 bibcode = article["bibcode"]
-                id = "\\\\bibcode: " + f"\\href{{https://ui.adsabs.harvard.edu/abs/{bibcode}/abstract}}{{\\underline{{{bibcode}}}}}"
+                id = "bibcode: " + f"\\href{{https://ui.adsabs.harvard.edu/abs/{bibcode}/abstract}}{{\\underline{{{bibcode}}}}}"
             elif "arxiv" in article.keys():
                 arxiv = article["arxiv"]
-                id = "\\\\arxiv: " + f"\\href{{https://arxiv.org/abs/{arxiv}}}{{\\underline{{{arxiv}}}}}" 
-            journal += id
+                id = "arxiv: " + f"\\href{{https://arxiv.org/abs/{arxiv}}}{{\\underline{{{arxiv}}}}}" 
 
             author_list = group[0]["authors"]
             # auth is author 2 or 3
@@ -172,7 +168,7 @@ def add_co_author(output, co_articles, co_other, auth):
                 author_list = ", ".join(author_list[:2]) + ", ..., " + auth + ", et. al."
             author_list = wrap_element(author_list, 27)
             year = group[0]["last-modified-date"].split('-')[0]
-            s.append(f"        \\publicationElement{{{title}}}{{{journal}}}{{{author_list}}}{{{year}}}{{}}\n")
+            s.append(f"        \\publicationElement{{{title}}}{{{journal}}}{{{author_list} ({year})}}{{{id}}}{{}}\n")
         else:
             name = wrap_element(name.replace(" for", ""), 27)
             journal = wrap_element(group[0]["journal"], 27)
@@ -187,9 +183,24 @@ def add_co_author(output, co_articles, co_other, auth):
             else:
                 author_list = ", ".join(author_list[:2]) + ", ..., " + auth + ", et. al."
             author_list = wrap_element(author_list, 27)
-            year = group[0]["last-modified-date"].split('-')[0]
-            dates = ", ".join([g["title"].split()[-1] for g in group])
-            s.append(f"        \\publicationElement{{{name}}}{{{journal}}}{{{author_list}}}{{{year}}}{{{dates}}}\n")
+            years = [int(g["last-modified-date"].split('-')[0]) for g in group]
+            year = f"{min(years)}-{max(years)}"
+            dates = []
+            for g in group:
+                date = g["title"].split()[-1]
+                id = ""
+                if "doi" in g.keys():
+                    doi = g["doi"]
+                    id = "doi: " + f"\\href{{https://doi.org/{doi}}}{{\\underline{{{doi}}}}}" 
+                elif "bibcode" in g.keys():
+                    bibcode = g["bibcode"]
+                    id = "bibcode: " + f"\\href{{https://ui.adsabs.harvard.edu/abs/{bibcode}/abstract}}{{\\underline{{{bibcode}}}}}"
+                elif "arxiv" in g.keys():
+                    arxiv = g["arxiv"]
+                    id = "arxiv: " + f"\\href{{https://arxiv.org/abs/{arxiv}}}{{\\underline{{{arxiv}}}}}" 
+                dates.append(f"{date}: {id}")
+            dates = ", ".join(dates)
+            s.append(f"        \\publicationElement{{{name}}}{{{journal}}}{{{author_list}}}{{}}{{{dates}}}\n")
     result = "".join(lines[:start_ind+1] + s + lines[start_ind+1:])
     with open(output, 'w') as f:
         f.write(result)
