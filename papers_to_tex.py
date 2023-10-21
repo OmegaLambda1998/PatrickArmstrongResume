@@ -39,6 +39,7 @@ def fix_authors(authors, i):
     return [fs[i](author) for author in authors]
 
 def wrap_element(orig_element, n):
+    return orig_element
     element = ""
     char_len = 0
     words = orig_element.split()
@@ -199,8 +200,9 @@ def add_co_author(output, co_articles, co_other, auth):
                     arxiv = g["arxiv"]
                     id = "arxiv: " + f"\\href{{https://arxiv.org/abs/{arxiv}}}{{\\underline{{{arxiv}}}}}" 
                 dates.append(f"{date}: {id}")
+            num = len(dates)
             dates = ", ".join(dates)
-            s.append(f"        \\publicationElement{{{name}}}{{{journal}}}{{{author_list}}}{{}}{{{dates}}}\n")
+            s.append(f"        \\publicationElement{{{name}}}{{{journal}}}{{{author_list}}}{{{num} Reports}}{{{dates}}}\n")
     result = "".join(lines[:start_ind+1] + s + lines[start_ind+1:])
     with open(output, 'w') as f:
         f.write(result)

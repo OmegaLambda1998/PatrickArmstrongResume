@@ -48,7 +48,7 @@
 \addtolength{\evensidemargin}{-0.5in}
 \addtolength{\textwidth}{1in}
 \addtolength{\topmargin}{-.5in}
-\addtolength{\textheight}{1.0in}
+\addtolength{\textheight}{0.8in}
 
 \urlstyle{same}
 
@@ -69,6 +69,9 @@
 
 %-------------------------
 % Custom commands
+
+\newcommand*\lbreak{\\[\baselineskip]}
+
 \newcommand{\resumeItem}[1]{
   \item\small{
     {#1 \vspace{-2pt}}
@@ -188,20 +191,24 @@
 }
 
 \newcommand{\publicationElement}[5]{%
-    \resumeSubHeadingListStart
-        \resumeSubheading
-            {\makecell[l]{#1}}
-            {\makecell[r]{#2}}
-            {\makecell[l]{#3}}
-            {\makecell[rt]{#4}}
-            \ifthenelse{\isempty{#5}}{}{%
-                \resumeItemListStart
-                    \renewcommand*{\do}[1]{\resumeItem{##1}}
-                    \docsvlist{#5}%
-                \resumeItemListEnd
-            }%
-    \resumeSubHeadingListEnd
+    \textbf{{#1}} ({#4})\\{#3}; {#2}\lbreak{}
 }
+
+%\newcommand{\publicationElement}[5]{%
+%    \resumeSubHeadingListStart
+%        \resumeSubheading
+%            {\makecell[l]{#1}}
+%            {\makecell[r]{#2}}
+%            {\makecell[l]{#3}}
+%            {\makecell[rt]{#4}}
+%            \ifthenelse{\isempty{#5}}{}{%
+%                \resumeItemListStart
+%                    \renewcommand*{\do}[1]{\resumeItem{##1}}
+%                    \docsvlist{#5}%
+%                \resumeItemListEnd
+%            }%
+%    \resumeSubHeadingListEnd
+%}
 
 %-------------------------------------------
 %%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
