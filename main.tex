@@ -127,14 +127,15 @@
         \resumeSubheading
             {#1}
             {#2}
-            {#3}
+            {\makecell[l]{#3}}
             {#4}
-            \ifthenelse{\isempty{#5}}{}{%
-                \resumeItemListStart
-                    \renewcommand*{\do}[1]{\resumeItem{##1}}
-                    \docsvlist{#5}%
-                \resumeItemListEnd
-            }%
+            {#5}
+            % \ifthenelse{\isempty{#5}}{}{%
+                % \resumeItemListStart
+                    % \renewcommand*{\do}[1]{\resumeItem{##1}}
+                    % \docsvlist{#5}%
+                % \resumeItemListEnd
+            % }%
     \resumeSubHeadingListEnd
 }
 
@@ -192,7 +193,7 @@
             {\makecell[l]{#1}}
             {\makecell[r]{#2}}
             {\makecell[l]{#3}}
-            {\makecell[r]{#4}}
+            {\makecell[rt]{#4}}
             \ifthenelse{\isempty{#5}}{}{%
                 \resumeItemListStart
                     \renewcommand*{\do}[1]{\resumeItem{##1}}
@@ -218,60 +219,61 @@
 
 %-----------EDUCATION-----------
 \section{Education}
-  \educationElement{Doctor of Philosophy (Astronomy \& Astrophysics)}{Australian National University}{February 2020 -- Present}{}
-  \educationElement{Bachelor of Science (Adv.) (Hon.)}{Australian National University}{February 2016 -- October 2019}{}
+  \educationElement{Doctor of Philosophy (Astronomy \& Astrophysics)}{Australian National University}{}{February 2020 -- Present}
+  \educationElement{Bachelor of Science (Adv.) (Hon.)}{Australian National University}{}{February 2016 -- October 2019}
 
 
 %-----------EXPERIENCE-----------
-\section{Experience}
+\section{Academic Experience}
 
-    \experienceElement{DES Builder}{Dark Energy Survey}{July 2023 -- Present}{}{Develop \& maintain the~\href{https://github.com/dessn/Pippin}{\underline{Pippin}} pipeline, Internal review of DES papers, Organise \& host meetings}
+    \experienceElement{DES Builder}{Dark Energy Survey}{Develop \& maintain the~\href{https://github.com/dessn/Pippin}{\underline{Pippin}} pipeline, Internal review of DES papers, Organise \& host meetings.}{July 2023 -- Present}{}
 
-    \experienceElement{MSATT Student Mentor}{MSATT}{February 2020 -- Present}{}{Provide guidance and mentorship for highschool students completing astronomical projects}
+    \experienceElement{MSATT Student Mentor}{MSATT}{Provide guidance and mentorship for highschool students completing astronomical projects.}{February 2020 -- Present}{}
 
-    \experienceElement{Astronomical Tutor}{Australian National University}{July 2019 -- October 2022}{}{Sole tutor for~\textit{Galaxies and Cosmology (ASTR3002)}}
+    \experienceElement{Astronomical Tutor}{Australian National University}{Sole tutor for~\textit{Galaxies and Cosmology (ASTR3002)}.}{July 2019 -- October 2022}{}
 
-    \experienceElement{Student Seminar Planning Committee Member}{Australian National University}{February 2021 -- October 2022}{}{[2022]: Senior planning committee member, [2021]: Planning committee member}
+\section{Other Experience}
 
-    \experienceElement{Mt. Stromlo Outreach Officer}{Australian National University}{January 2018 -- December 2022}{}{Deliver high quality outreach experience for school groups and families}
+    \experienceElement{Student Seminar Planning Committee Member}{Australian National University}{[2022]: Senior planning committee member, [2021]: Planning committee member}{February 2021 -- October 2022}{}
 
-    \experienceElement{Astronomical Consultant}{}{October 2018 -- December 2020}{}{[2020] Research for Questacon's~\textit{Australia in Space} exhibition, [2019] Research for Penguin Random House's~\textit{Stargazer} publication, [2018] Research and preparation for ABC's Stargazing Live 2018, [2018] Building backend code and moderation for the Skymapper Citizen Science Project: Supernova Sighting}
+    \experienceElement{Mt. Stromlo Outreach Officer}{Australian National University}{Deliver high quality outreach experience for school groups and families}{January 2018 -- December 2022}{}
 
-    \experienceElement{Questacon Staff}{Questacon}{January 2015 -- December 2020}{}{[2019 -- 2020] Learning Programs Presenter (APS 4), [2016 -- 2019] Questacon Assistant (APS 2), [2015 -- 2019] Gallery Assistant (APS 1)}
+    \experienceElement{Astronomical Consultant}{}{[2020] Research for Questacon's Australia in Space exhibition\\{}[2019] Research for Penguin Random House's Stargazer publication\\{}[2018] Research and preparation for ABC's Stargazing Live 2018\\{}[2018] Building backend code and moderation for the Skymapper Citizen Science Project: Supernova Sighting}{}{}
+    \experienceElement{Questacon Staff}{Questacon}{[2019 -- 2020] Learning Programs Presenter (APS 4)\\{}[2016 -- 2019] Questacon Assistant (APS 2)\\{}[2015 -- 2019] Gallery Assistant (APS 1)}{}{}
 
 
 \section{Awards \& Scholarships}
 
-    \awardElement{Alex Rodgers Travelling Scholarship}{ANU College of Science}{2022}{}{Travel to DES Collaboration Meeting 2022}
+    \awardElement{Alex Rodgers Travelling Scholarship}{ANU College of Science}{Travel to DES Collaboration Meeting 2022}{2022}{}
     
-    \awardElement{Commendation for Excellence in Tutoring or Demonstrating}{ANU College of Science}{2022}{}{Tutoring~\textit{Galaxies and Cosmology (ASTR3002)}}
+    \awardElement{Commendation for Excellence in Tutoring or Demonstrating}{ANU College of Science}{Tutoring~\textit{Galaxies and Cosmology (ASTR3002)}}{2022}{}
     
-    \awardElement{Australian Government Research Training Program}{Australian National University}{2020 -- Present}{}{PhD Scholarship}
+    \awardElement{Australian Government Research Training Program}{Australian National University}{PhD Scholarship}{2020 -- Present}{}
     
-    \awardElement{RSAA Supplementary Scholarship}{Australian National University}{2020 -- Present}{}{PhD Scholarship}
+    \awardElement{RSAA Supplementary Scholarship}{Australian National University}{PhD Scholarship}{2020 -- Present}{}
     
-    \awardElement{ANU Science, Health, and Medicine Honours Scholarship}{Australian National University}{2019}{}{Honours Scholarship}
+    \awardElement{ANU Science, Health, and Medicine Honours Scholarship}{Australian National University}{Honours Scholarship}{2019}{}
     
-    \awardElement{ANU Summer Research Scholarship}{Australian National University}{2016}{}{Develop a TNS Bulk Report API for the SkyMapper Transient Survey}
+    \awardElement{ANU Summer Research Scholarship}{Australian National University}{Develop a TNS Bulk Report API for the SkyMapper Transient Survey}{2016}{}
     
-    \awardElement{Boyapti Computer Science and Mathematics prize for first year}{Australian National University}{2016}{}{Top grades in mathematics and computing}
-
-\section{Conference}
-
-    \conferenceElement{CosmoPalooza}{Invited Speaker}{2023}{DES SN 5 Year Methodology \& Results}{}
-    \conferenceElement{DES Collaboration Meeting}{Invited Speaker}{2020, 2021, 2022, 2023}{DES 5 year supernova analysis}{}
-    \conferenceElement{ASA Annual Science Meeting}{Speaker}{2020, 2021, 2022, 2023}{DES 5 year supernova analysis}{}
-    \conferenceElement{Kepler K2 Extragalactic Data Analysis Meeting}{Attendee}{2018}{Investigating transients in Kepler's K2 survey}{}
-
-\section{Communcation}
-
-    \communicationElement{SN2017jgh: a high-cadence complete\\shock cooling light curve of a SN IIb\\with the Kepler telescope}{Over 180 items in print, radio, and online,\\across Australia and internationally}{2021}{}{\textbf{Highlights:}, Al Jazeera, National Geographic Indonesia, Radio Canada, De Morgen, ABC Science online, The Guardian, Space Australia, Sky News Australia, 2GB and on the AAP wires}
+    \awardElement{Boyapti Computer Science and Mathematics prize for first year}{Australian National University}{Top grades in mathematics and computing}{2016}{}
 
 \section{Publications}
 
     \subsection{First Author}
 
     \subsection{Co-Author}
+
+\section{Conference Talks}
+
+    \conferenceElement{CosmoPalooza}{Invited Speaker}{DES SN 5 Year Methodology \& Results}{2023}{}
+    \conferenceElement{DES Collaboration Meeting}{Invited Speaker}{DES 5 year supernova analysis}{2020, 2021, 2022, 2023}{}
+    \conferenceElement{ASA Annual Science Meeting}{Speaker}{DES 5 year supernova analysis}{2020, 2021, 2022, 2023}{}
+    \conferenceElement{Kepler K2 Extragalactic Data Analysis Meeting}{Attendee}{Investigating transients in Kepler's K2 survey}{2018}{}
+
+\section{Communcation}
+
+    \communicationElement{SN2017jgh: a high-cadence complete\\shock cooling light curve of a SN IIb\\with the Kepler telescope}{Over 180 items in print, radio, and online,\\across Australia and internationally}{\textbf{Highlights:}, Al Jazeera, National Geographic Indonesia, Radio Canada,\\De Morgen, ABC Science online, The Guardian, Space Australia,\\Sky News Australia, 2GB and on the AAP wires}{2021}{}
 
 %-------------------------------------------
 \end{document}
