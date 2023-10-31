@@ -1,0 +1,313 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+\usepackage{fontawesome5}
+\usepackage{etoolbox}
+\usepackage{xifthen}
+\usepackage{makecell}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.8in}
+\addtolength{\textheight}{1.2in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\titleformat{\subsection}{
+  \vspace{-4pt}\scshape\raggedright\normalsize
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+
+\newcommand*\lbreak{\\[\baselineskip]}
+
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\newcommand{\insertName}{Patrick Armstrong}
+\newcommand{\insertWebsite}{\href{https://www.omegalambda.au/}{\faIcon{globe}~\underline{omegalambda.au}~}}
+\newcommand{\insertEmail}{\href{mailto:patrick.armstrong@anu.edu.au}{\faIcon{envelope}~\underline{patrick.armstrong@anu.edu.au}~}}
+\newcommand{\insertGithub}{\href{https://www.github.com/OmegaLambda1998}{\faIcon{github}~\underline{OmegaLambda1998}~}}
+\newcommand{\insertOrcid}{\href{https://www.orcid.org/000-003-1997-3649}{\faIcon{orcid}~\underline{0000-0003-1997-3649}}}
+
+\newcommand{\educationElement}[4]{%
+    \resumeSubHeadingListStart
+        \resumeSubheading
+            {#1}
+            {#2}
+            {#3}
+            {#4}
+    \resumeSubHeadingListEnd
+}
+
+\newcommand{\experienceElement}[5]{%
+    \resumeSubHeadingListStart
+        \resumeSubheading
+            {#1}
+            {#2}
+            {\makecell[l]{#3}}
+            {#4}
+            {#5}
+            % \ifthenelse{\isempty{#5}}{}{%
+                % \resumeItemListStart
+                    % \renewcommand*{\do}[1]{\resumeItem{##1}}
+                    % \docsvlist{#5}%
+                % \resumeItemListEnd
+            % }%
+    \resumeSubHeadingListEnd
+}
+
+\newcommand{\awardElement}[5]{%
+    \resumeSubHeadingListStart
+        \resumeSubheading
+            {#1}
+            {#2}
+            {#3}
+            {#4}
+            \ifthenelse{\isempty{#5}}{}{%
+                \resumeItemListStart
+                    \renewcommand*{\do}[1]{\resumeItem{##1}}
+                    \docsvlist{#5}%
+                \resumeItemListEnd
+            }%
+    \resumeSubHeadingListEnd
+}
+
+\newcommand{\conferenceElement}[5]{%
+    \resumeSubHeadingListStart
+        \resumeSubheading
+            {#1}
+            {#2}
+            {#3}
+            {#4}
+            \ifthenelse{\isempty{#5}}{}{%
+                \resumeItemListStart
+                    \renewcommand*{\do}[1]{\resumeItem{##1}}
+                    \docsvlist{#5}%
+                \resumeItemListEnd
+            }%
+    \resumeSubHeadingListEnd
+}
+
+\newcommand{\communicationElement}[5]{%
+    \resumeSubHeadingListStart
+        \resumeSubheading
+            {\makecell[l]{#1}}
+            {\makecell[r]{#2}}
+            {\makecell[l]{#3}}
+            {\makecell[r]{#4}}
+            \ifthenelse{\isempty{#5}}{}{%
+                \resumeItemListStart
+                    \renewcommand*{\do}[1]{\resumeItem{##1}}
+                    \docsvlist{#5}%
+                \resumeItemListEnd
+            }%
+    \resumeSubHeadingListEnd
+}
+
+\newcommand{\publicationElement}[5]{%
+    \textbf{{#1}} ({#4})\\{#3}; {#2}\lbreak{}
+}
+
+%\newcommand{\publicationElement}[5]{%
+%    \resumeSubHeadingListStart
+%        \resumeSubheading
+%            {\makecell[l]{#1}}
+%            {\makecell[r]{#2}}
+%            {\makecell[l]{#3}}
+%            {\makecell[rt]{#4}}
+%            \ifthenelse{\isempty{#5}}{}{%
+%                \resumeItemListStart
+%                    \renewcommand*{\do}[1]{\resumeItem{##1}}
+%                    \docsvlist{#5}%
+%                \resumeItemListEnd
+%            }%
+%    \resumeSubHeadingListEnd
+%}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Huge \scshape \insertName} \\ \vspace{2pt}
+    \insertWebsite $|$ \insertEmail $|$ 
+    \insertGithub $|$
+    \insertOrcid
+\end{center}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \educationElement{Doctor of Philosophy (Astronomy \& Astrophysics)}{Australian National University}{}{February 2020 -- Present}
+  \educationElement{Bachelor of Science (Adv.) (Hon.)}{Australian National University}{}{February 2016 -- October 2019}
+
+
+%-----------EXPERIENCE-----------
+\section{Academic Experience}
+
+    \experienceElement{DES Builder}{Dark Energy Survey}{Develop \& maintain the~\href{https://github.com/dessn/Pippin}{\underline{Pippin}} pipeline, Internal review of DES papers, Organise \& host meetings.}{July 2023 -- Present}{}
+
+    \experienceElement{MSATT Student Mentor}{MSATT}{Provide guidance and mentorship for highschool students completing astronomical projects.}{February 2020 -- Present}{}
+
+    \experienceElement{Astronomical Tutor}{Australian National University}{Sole tutor for~\textit{Galaxies and Cosmology (ASTR3002)}.}{July 2019 -- October 2022}{}
+
+\section{Other Experience}
+
+    \experienceElement{Student Seminar Planning Committee Member}{Australian National University}{[2022]: Senior planning committee member, [2021]: Planning committee member}{February 2021 -- October 2022}{}
+
+    \experienceElement{Mt. Stromlo Outreach Officer}{Australian National University}{Deliver high quality outreach experience for school groups and families}{January 2018 -- December 2022}{}
+
+    \experienceElement{Astronomical Consultant}{}{[2020] Research for Questacon's Australia in Space exhibition\\{}[2019] Research for Penguin Random House's Stargazer publication\\{}[2018] Research and preparation for ABC's Stargazing Live 2018\\{}[2018] Building backend code and moderation for the Skymapper Citizen Science Project: Supernova Sighting}{}{}
+    \experienceElement{Questacon Staff}{Questacon}{[2019 -- 2020] Learning Programs Presenter (APS 4)\\{}[2016 -- 2019] Questacon Assistant (APS 2)\\{}[2015 -- 2019] Gallery Assistant (APS 1)}{}{}
+
+
+\section{Recognition \& Distinctions}
+
+    \awardElement{ANU 2.3m Observing Time}{Siding Spring Observatory}{The Ultimate Low-z Supernova Sample for Cosmology}{2023}{}
+
+    \awardElement{Alex Rodgers Travelling Scholarship}{ANU College of Science}{Travel to DES Collaboration Meeting 2022}{2022}{}
+    
+    \awardElement{Commendation for Excellence in Tutoring or Demonstrating}{ANU College of Science}{Tutoring~\textit{Galaxies and Cosmology (ASTR3002)}}{2022}{}
+
+    \awardElement{NCI ANU Merit Allocation Scheme}{GADI}{Forward Modelling Supernova Cosmology}{2021 -- 2022}{}
+    
+    \awardElement{Australian Government Research Training Program}{Australian National University}{PhD Scholarship}{2020 -- Present}{}
+    
+    \awardElement{RSAA Supplementary Scholarship}{Australian National University}{PhD Scholarship}{2020 -- Present}{}
+    
+    \awardElement{ANU Science, Health, and Medicine Honours Scholarship}{Australian National University}{Honours Scholarship}{2019}{}
+    
+    \awardElement{ANU Summer Research Scholarship}{Australian National University}{Develop a TNS Bulk Report API for the SkyMapper Transient Survey}{2016}{}
+    
+    \awardElement{Boyapti Computer Science and Mathematics prize for first year}{Australian National University}{Top grades in mathematics and computing}{2016}{}
+
+\section{Publications}
+
+    \subsection{First Author}
+
+        \publicationElement{Probing the consistency of cosmological contours for supernova cosmology}{Publications of the Astronomical Society of Australia}{P. Armstrong, H. Qu, et. al. (2023)}{doi: \href{https://doi.org/10.1017/pasa.2023.40}{\underline{10.1017/pasa.2023.40}}}{}
+        \publicationElement{SN2017jgh: a high-cadence complete shock cooling light curve of a SN IIb with the Kepler telescope}{Monthly Notices of the Royal Astronomical Society}{P. Armstrong, B E. Tucker, et. al. (2022)}{doi: \href{https://doi.org/10.1093/mnras/stab2138}{\underline{10.1093/mnras/stab2138}}}{}
+
+    \subsection{Co-Author}
+
+        \publicationElement{Binning is Sinning: Redemption for Hubble Diagram Using Photometrically Classified Type Ia Supernovae}{The Astrophysical Journal Letters}{R. Kessler, M. Vincenzi, ..., P. Armstrong, et. al. (2023)}{doi: \href{https://doi.org/10.3847/2041-8213/ace34d}{\underline{10.3847/2041-8213/ace34d}}}{}
+        \publicationElement{Revealing the Progenitor of SN 2021zby through Analysis of the TESS Shock-cooling Light Curve}{The Astrophysical Journal Letters}{Q. Wang, P. Armstrong, et. al. (2023)}{doi: \href{https://doi.org/10.3847/2041-8213/acb0d0}{\underline{10.3847/2041-8213/acb0d0}}}{}
+        \publicationElement{Concerning colour: The effect of environment on type Ia supernova colour in the dark energy survey}{Monthly Notices of the Royal Astronomical Society}{L. Kelsey, M. Sullivan, ..., P. Armstrong, et. al. (2023)}{doi: \href{https://doi.org/10.1093/mnras/stac3711}{\underline{10.1093/mnras/stac3711}}}{}
+        \publicationElement{The Dark Energy Survey supernova program: cosmological biases from supernova photometric classification}{Monthly Notices of the Royal Astronomical Society}{M. Vincenzi, M. Sullivan, ..., P. Armstrong, et. al. (2022)}{doi: \href{https://doi.org/10.1093/mnras/stac1404}{\underline{10.1093/mnras/stac1404}}}{}
+        \publicationElement{Revealing the progenitor of SN 2021zby through analysis of the $TESS$ shock-cooling light curve}{arXiv e-prints}{Q. Wang, P. Armstrong, et. al. (2023)}{doi: \href{https://doi.org/10.48550/arXiv.2211.03811}{\underline{10.48550/arXiv.2211.03811}}}{}
+        \publicationElement{Measuring Cosmological Parameters with Type Ia Supernovae in redMaGiC Galaxies}{The Astrophysical Journal}{R. Chen, D. Scolnic, ..., P. Armstrong, et. al. (2023)}{doi: \href{https://doi.org/10.3847/1538-4357/ac8b82}{\underline{10.3847/1538-4357/ac8b82}}}{}
+        \publicationElement{The Pantheon+ Analysis: Cosmological Constraints}{The Astrophysical Journal}{D. Brout, D. Scolnic, ..., P. Armstrong, et. al. (2023)}{doi: \href{https://doi.org/10.3847/1538-4357/ac8e04}{\underline{10.3847/1538-4357/ac8e04}}}{}
+        \publicationElement{The dark energy survey 5-yr photometrically identified type Ia supernovae}{Monthly Notices of the Royal Astronomical Society}{A. Möller, M. Smith, ..., P. Armstrong, et. al. (2023)}{doi: \href{https://doi.org/10.1093/mnras/stac1691}{\underline{10.1093/mnras/stac1691}}}{}
+        \publicationElement{SN 2018agk: A Prototypical Type Ia Supernova with a Smooth Power-law Rise in Kepler (K2)}{The Astrophysical Journal}{Q. Wang, A. Rest, ..., P. Armstrong, et. al. (2022)}{doi: \href{https://doi.org/10.3847/1538-4357/ac2c84}{\underline{10.3847/1538-4357/ac2c84}}}{}
+        \publicationElement{Rates and delay times of Type Ia supernovae in the Dark Energy Survey}{Monthly Notices of the Royal Astronomical Society}{P. Wiseman, M. Sullivan, ..., P. Armstrong, et. al. (2023)}{doi: \href{https://doi.org/10.1093/mnras/stab1943}{\underline{10.1093/mnras/stab1943}}}{}
+        \publicationElement{First Results of the SkyMapper Transient Survey}{IAU Symposium}{A. Möller, B. E. Tucker, ..., P. Armstrong, et. al. (2022)}{doi: \href{https://doi.org/10.1017/S1743921318002077}{\underline{10.1017/S1743921318002077}}}{}
+        \publicationElement{Spectroscopic classification of SN 2018bwp as a type Ia supernova a few weeks after peak brightness}{The Astronomer's Telegram}{A. Lopez-Sanchez, L. Galbany, ..., P. Armstrong, et. al. (2022)}{bibcode: \href{https://ui.adsabs.harvard.edu/abs/2018ATel11671....1L/abstract}{\underline{2018ATel11671....1L}}}{}
+        \publicationElement{Spectroscopic classification of SN 2018bwq as a type Ia supernova a few days before maximum light.}{The Astronomer's Telegram}{A. Lopez-Sanchez, L. Galbany, ..., P. Armstrong, et. al. (2022)}{bibcode: \href{https://ui.adsabs.harvard.edu/abs/2018ATel11667....1L/abstract}{\underline{2018ATel11667....1L}}}{}
+        \publicationElement{First Confirmed Supernova with the SkyMapper/Zooniverse Supernova Sighting Project}{The Astronomer's Telegram}{B. E. Tucker, A. Moller, ..., P. Armstrong, et. al. (2022)}{bibcode: \href{https://ui.adsabs.harvard.edu/abs/2017ATel10426....1T/abstract}{\underline{2017ATel10426....1T}}}{}
+        \publicationElement{WiFeS Classification of SMT17kdl/SN2017edm as a Type Ia Supernova}{The Astronomer's Telegram}{B. E. Tucker, A. Moller, ..., P. Armstrong, et. al. (2022)}{bibcode: \href{https://ui.adsabs.harvard.edu/abs/2017ATel10444....1T/abstract}{\underline{2017ATel10444....1T}}}{}
+        \publicationElement{DEbass Transient Classification Report}{Transient Name Server Classification Report}{C. Lidman, H. J. Abbot, ..., P. Armstrong, et. al.}{16 Reports}{2023-01-07: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2023TNSCR..33....1L/abstract}{\underline{2023TNSCR..33....1L}}, 2022-10-11: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2022TNSCR2955....1L/abstract}{\underline{2022TNSCR2955....1L}}, 2022-09-13: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2022TNSCR2645....1L/abstract}{\underline{2022TNSCR2645....1L}}, 2022-09-14: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2022TNSCR2650....1L/abstract}{\underline{2022TNSCR2650....1L}}, 2022-09-20: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2022TNSCR2715....1L/abstract}{\underline{2022TNSCR2715....1L}}, 2022-08-19: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2022TNSCR2381....1L/abstract}{\underline{2022TNSCR2381....1L}}, 2022-08-21: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2022TNSCR2406....1L/abstract}{\underline{2022TNSCR2406....1L}}, 2022-07-09: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2022TNSCR1932....1L/abstract}{\underline{2022TNSCR1932....1L}}, 2022-07-16: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2022TNSCR2000....1L/abstract}{\underline{2022TNSCR2000....1L}}, 2022-07-20: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2022TNSCR2041....1L/abstract}{\underline{2022TNSCR2041....1L}}, 2022-06-18: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2022TNSCR1694....1L/abstract}{\underline{2022TNSCR1694....1L}}, 2021-12-21: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2021TNSCR4188....1L/abstract}{\underline{2021TNSCR4188....1L}}, 2021-11-16: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2021TNSCR3934....1L/abstract}{\underline{2021TNSCR3934....1L}}, 2021-11-18: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2021TNSCR3951....1L/abstract}{\underline{2021TNSCR3951....1L}}, 2021-10-26: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2021TNSCR3650....1L/abstract}{\underline{2021TNSCR3650....1L}}, 2021-10-27: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2021TNSCR3660....1L/abstract}{\underline{2021TNSCR3660....1L}}}
+        \publicationElement{Transient Classification Report for 2021-10-12}{Transient Name Server Classification Report}{C. Lidman, M. Dixon, ..., P. Armstrong, et. al. (2022)}{bibcode: \href{https://ui.adsabs.harvard.edu/abs/2021TNSCR3493....1L/abstract}{\underline{2021TNSCR3493....1L}}}{}
+        \publicationElement{Classification of 11 supernovae by DEBass}{The Astronomer's Telegram}{C. Lidman, S. Dhaka, ..., P. Armstrong, et. al. (2022)}{bibcode: \href{https://ui.adsabs.harvard.edu/abs/2021ATel14925....1L/abstract}{\underline{2021ATel14925....1L}}}{}
+        \publicationElement{SkyMapper Transient Discovery Report}{Transient Name Server Discovery Report}{A. Moller, B. Tucker, ..., P. Armstrong, et. al.}{15 Reports}{2018-05-23: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2018TNSTR.698....1M/abstract}{\underline{2018TNSTR.698....1M}}, 2017-09-06: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2017TNSTR.974....1M/abstract}{\underline{2017TNSTR.974....1M}}, 2017-08-01: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2017TNSTR.827....1M/abstract}{\underline{2017TNSTR.827....1M}}, 2017-08-02: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2017TNSTR.832....1M/abstract}{\underline{2017TNSTR.832....1M}}, 2017-08-03: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2017TNSTR.837....1M/abstract}{\underline{2017TNSTR.837....1M}}, 2017-08-07: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2017TNSTR.851....1M/abstract}{\underline{2017TNSTR.851....1M}}, 2017-08-08: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2017TNSTR.854....1M/abstract}{\underline{2017TNSTR.854....1M}}, 2017-08-22: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2017TNSTR.899....1M/abstract}{\underline{2017TNSTR.899....1M}}, 2017-08-23: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2017TNSTR.904....1M/abstract}{\underline{2017TNSTR.904....1M}}, 2017-08-27: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2017TNSTR.923....1M/abstract}{\underline{2017TNSTR.923....1M}}, 2017-08-28: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2017TNSTR.927....1M/abstract}{\underline{2017TNSTR.927....1M}}, 2017-08-30: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2017TNSTR.934....1M/abstract}{\underline{2017TNSTR.934....1M}}, 2017-05-19: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2017TNSTR.568....1M/abstract}{\underline{2017TNSTR.568....1M}}, 2017-05-23: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2017TNSTR.582....1M/abstract}{\underline{2017TNSTR.582....1M}}, 2017-05-25: bibcode: \href{https://ui.adsabs.harvard.edu/abs/2017TNSTR.593....1M/abstract}{\underline{2017TNSTR.593....1M}}}
+
+\section{Conference Talks}
+
+    \conferenceElement{CosmoPalooza}{Invited Speaker}{DES SN 5 Year Methodology \& Results}{2023}{}
+    \conferenceElement{DES Collaboration Meeting}{Invited Speaker}{DES 5 year supernova analysis}{2020, 2021, 2022, 2023}{}
+    \conferenceElement{ASA Annual Science Meeting}{Speaker}{DES 5 year supernova analysis}{2020, 2021, 2022, 2023}{}
+    \conferenceElement{Kepler K2 Extragalactic Data Analysis Meeting}{Attendee}{Investigating transients in Kepler's K2 survey}{2018}{}
+
+\section{Communcation}
+
+    \communicationElement{SN2017jgh: a high-cadence complete\\shock cooling light curve of a SN IIb\\with the Kepler telescope}{Over 180 items in print, radio, and online,\\across Australia and internationally}{\textbf{Highlights:}, Al Jazeera, National Geographic Indonesia, Radio Canada,\\De Morgen, ABC Science online, The Guardian, Space Australia,\\Sky News Australia, 2GB and on the AAP wires}{2021}{}
+
+%-------------------------------------------
+\end{document}

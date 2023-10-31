@@ -144,8 +144,9 @@ def add_co_author(output, co_articles, co_other, auth):
         groups[pre_title].append(article)
     for (name, group) in groups.items():
         if len(group) == 1:
-            title = wrap_element(group[0]["title"], 27)
-            journal = wrap_element(group[0]["journal"], 27)
+            article = group[0]
+            title = wrap_element(article["title"], 27)
+            journal = wrap_element(article["journal"], 27)
             id = ""
             if "doi" in article.keys():
                 doi = article["doi"]
