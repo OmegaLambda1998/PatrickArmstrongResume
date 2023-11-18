@@ -8,21 +8,24 @@ import tqdm
 from joblib import Parallel, delayed
 from multiprocessing import cpu_count
 import json
+import re
 
 def get_authors_from_doi(doi):
     response = subprocess.run(["doi2bib", doi], capture_output=True, text=True).stdout
-    try:
-        author_line = [line for line in response.split("\n") if "author" in line][0]
-    except:
-        print(f"No bibtex information for doi: {doi}, can't determine authors")
+    patter = re.compile(r'author={([^}]*)}')
+    match = patter.search(response)
+    if match:
+        author_list = match.group(1)
+        authors = [author.strip() for author in author_list.split(" and ")]
+    else:
+        print(f"No bibtex information for doi: {doi}")
         return None
-    authors = "{".join(author_line.split("{")[1:])[:-2].split(" and ")
     return authors 
 
 def get_authors_from_bibcode(bibcode):
     response = list(ads.SearchQuery(bibcode=bibcode))
     if len(response) == 0:
-        print(f"No ads information for bibcode: {bibcode}, can't determine authors")
+        print(f"No ads information for bibcode: {bibcode}")
         return None
     authors = response[0].author
     return authors
@@ -30,7 +33,7 @@ def get_authors_from_bibcode(bibcode):
 def get_authors_from_arxiv(arxiv_id):
     response = list(arxiv.Search(id_list=[arxiv_id]).results())
     if len(response) == 0:
-        print(f"No arxiv information for arxiv_id: {arxiv_id}, can't determine authors")
+        print(f"No arxiv information for arxiv_id: {arxiv_id}")
         return None
     authors = [author.name for author in response[0].authors]
     return authors
@@ -59,10 +62,13 @@ def get_papers(content):
         # Attempt to get bibtex citation, which includes author information
         authors = None
         if "doi" in paper.keys():
+            #print(f"Getting authors for paper: '{paper['title']}' via doi")
             authors = get_authors_from_doi(paper["doi"])
-        if ("bibcode" in paper.keys()) and (authors is None):
+        elif ("bibcode" in paper.keys()) and (authors is None):
+            #print(f"Getting authors for paper: '{paper['title']}' via bibcode")
             authors = get_authors_from_bibcode(paper["bibcode"])
-        if ("arxiv" in paper.keys()) and (authors is None):
+        elif ("arxiv" in paper.keys()) and (authors is None):
+            #print(f"Getting authors for paper: '{paper['title']}' via arxiv")
             authors = get_authors_from_arxiv(paper["arxiv"])
         if authors is None:
             print(f"Warning can't get authors for paper: '{paper['title']}', missing doi, bibcode or arxiv-id.")
@@ -70,6 +76,7 @@ def get_papers(content):
         paper["authors"] = authors
         return paper
     papers = Parallel(n_jobs=cpu_count())(delayed(task)(paper_data) for paper_data in tqdm.tqdm(data))
+    #papers = [task(paper_data) for paper_data in data]
     return papers 
 
 def find_duplicates(papers):

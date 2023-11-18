@@ -9,7 +9,8 @@ def get_author_variations(author):
     Lastcomma_Fdot = f"{last}, {first[0]}."
     F_Last = f"{first[0]} {last}"
     Lastcomma_First = f"{last}, {first}"
-    return [Fdot_Last, First_Last, Lastcomma_Fdot, F_Last, Lastcomma_First]
+    Lastcomma_F = f"{last}, {first[0]}"
+    return [Fdot_Last, First_Last, Lastcomma_Fdot, F_Last, Lastcomma_First, Lastcomma_F]
 
 def fix_Fdot_Last(author):
     return author
@@ -34,8 +35,13 @@ def fix_Lastcomma_First(author):
     first = ", ".join(first)
     return f"{first[0]}. {last}"
 
+def fix_Lastcomma_F(author):
+    last, *f = author.split(", ")
+    f = ", ".join(f)
+    return f"{f}. {last}"
+
 def fix_authors(authors, i):
-    fs = [fix_Fdot_Last, fix_First_Last, fix_Lastcomma_Fdot, fix_F_Last, fix_Lastcomma_First]
+    fs = [fix_Fdot_Last, fix_First_Last, fix_Lastcomma_Fdot, fix_F_Last, fix_Lastcomma_First, fix_Lastcomma_F]
     return [fs[i](author) for author in authors]
 
 def wrap_element(orig_element, n):
