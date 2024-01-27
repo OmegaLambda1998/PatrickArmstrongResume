@@ -64,10 +64,10 @@ def get_papers(content):
         if "doi" in paper.keys():
             #print(f"Getting authors for paper: '{paper['title']}' via doi")
             authors = get_authors_from_doi(paper["doi"])
-        elif ("bibcode" in paper.keys()) and (authors is None):
+        if ("bibcode" in paper.keys()) and (authors is None):
             #print(f"Getting authors for paper: '{paper['title']}' via bibcode")
             authors = get_authors_from_bibcode(paper["bibcode"])
-        elif ("arxiv" in paper.keys()) and (authors is None):
+        if ("arxiv" in paper.keys()) and (authors is None):
             #print(f"Getting authors for paper: '{paper['title']}' via arxiv")
             authors = get_authors_from_arxiv(paper["arxiv"])
         if authors is None:
