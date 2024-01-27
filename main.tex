@@ -190,6 +190,23 @@
     \resumeSubHeadingListEnd
 }
 
+\newcommand{\proficiencyElement}[5]{%
+    \resumeSubHeadingListStart
+        \resumeSubheading
+            {#1}
+            {#2}
+            {\makecell[l]{#3}}
+            {#4}
+            {#5}
+            % \ifthenelse{\isempty{#5}}{}{%
+                % \resumeItemListStart
+                    % \renewcommand*{\do}[1]{\resumeItem{##1}}
+                    % \docsvlist{#5}%
+                % \resumeItemListEnd
+            % }%
+    \resumeSubHeadingListEnd
+}
+
 \newcommand{\publicationElement}[5]{%
     \textbf{{#1}} ({#4})\\{#3}; {#2}\lbreak{}
 }
@@ -269,22 +286,30 @@
     
     \awardElement{Boyapti Computer Science and Mathematics prize for first year}{Australian National University}{Top grades in mathematics and computing}{2016}{}
 
+\section{Technical Skills}
+
+    \proficiencyElement{Python 3}{Numpy, Scipy, Pandas, Emcee, GetDist, Ultranest}{\href{https://github.com/OmegaLambda1998/Covariance}{\underline{Covariance Matrix Calculator}}, \href{https://github.com/dessn/Pippin}{\underline{Pippin Pipeline}}, \href{https://github.com/dessn/BiasValidation}{\underline{Cosmology Validator}}}{}{}
+    \proficiencyElement{Julia}{Makie, PyCall, Unitful, AffineInvariantMCMC}{\href{https://github.com/OmegaLambda1998/ShockCooling.jl}{\underline{Fit Supernovae Lightcurve}}, \href{https://github.com/OmegaLambda1998/SALTJacobian.jl}{\underline{Approximate Supernovae Simulations}}}{}{}
+    \proficiencyElement{HTML, CSS, \& Javascript}{Django, Franklin}{\href{https://www.mso.anu.edu.au/debass/}{\underline{DEBass Survey}}, \href{https://www.omegalambda.au/}{\underline{Personal Website}}}{}{}
+    \proficiencyElement{Statistics}{}{MCMC, ABC, and other Bayesian Inference, Frequentist Inference, Data Analysis, Data Visualisation}{}{}
+
+
 \section{Publications}
 
     \subsection{First Author}
 
     \subsection{Co-Author}
 
-\newpage{}\section{Conference Talks}
+\newpage{}\section{Communcation}
+
+    \communicationElement{SN2017jgh: a high-cadence complete\\shock cooling light curve of a SN IIb\\with the Kepler telescope}{Over 180 items in print, radio, and online,\\across Australia and internationally}{\textbf{Highlights:}, Al Jazeera, National Geographic Indonesia, Radio Canada,\\De Morgen, ABC Science online, The Guardian, Space Australia,\\Sky News Australia, 2GB and on the AAP wires}{2021}{}
+
+\section{Conference Talks}
 
     \conferenceElement{CosmoPalooza}{Invited Speaker}{DES SN 5 Year Methodology \& Results}{2023}{}
     \conferenceElement{DES Collaboration Meeting}{Invited Speaker}{DES 5 year supernova analysis}{2020, 2021, 2022, 2023}{}
     \conferenceElement{ASA Annual Science Meeting}{Speaker}{DES 5 year supernova analysis}{2020, 2021, 2022, 2023}{}
     \conferenceElement{Kepler K2 Extragalactic Data Analysis Meeting}{Attendee}{Investigating transients in Kepler's K2 survey}{2018}{}
-
-\section{Communcation}
-
-    \communicationElement{SN2017jgh: a high-cadence complete\\shock cooling light curve of a SN IIb\\with the Kepler telescope}{Over 180 items in print, radio, and online,\\across Australia and internationally}{\textbf{Highlights:}, Al Jazeera, National Geographic Indonesia, Radio Canada,\\De Morgen, ABC Science online, The Guardian, Space Australia,\\Sky News Australia, 2GB and on the AAP wires}{2021}{}
 
 %-------------------------------------------
 \end{document}
