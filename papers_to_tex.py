@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import json
 import argparse
 
@@ -263,6 +265,7 @@ def main(args):
 
     add_first_author(args.output, first_articles, first_other)
     add_co_author("complete_" + args.output, co_articles, co_other, author[0])
+
 
     
 

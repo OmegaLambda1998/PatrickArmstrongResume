@@ -23,19 +23,20 @@ jobs:
           pip install -r requirements.txt
           python get_papers.py -id "0000-0003-1997-3649"
           python papers_to_tex.py -i papers.json -o main.tex -a "Patrick Armstrong"
+          cp complete_main.tex PatrickArmstrongCV.tex
         shell: sh
         env:
           ADS_DEV_KEY: ${{ secrets.ADS_DEV_KEY }}
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@master
         with:
-          root_file: complete_main.tex
+          root_file: PatrickArmstrongCV.tex
       - name: Configure Git and push changes
         run: |
           git config --global user.email "patrick.armstrong@anu.edu.au"
           git config --global user.name "Patrick Armstrong"
-          git add complete_main.pdf
-          git commit -m "Add complete_main.pdf"
+          git add PatrickArmstrongCV.pdf
+          git commit -m "Add PatrickArmstrongCV.pdf"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

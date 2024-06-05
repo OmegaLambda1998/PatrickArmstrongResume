@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import requests
 import xmltodict
 import argparse
@@ -9,6 +11,11 @@ from joblib import Parallel, delayed
 from multiprocessing import cpu_count
 import json
 import re
+import os
+
+ADS_DEV_KEY = os.environ.get('ADS_DEV_KEY')
+if ADS_DEV_KEY is not None:
+    ads.config.token = ADS_DEV_KEY
 
 def get_authors_from_doi(doi):
     response = subprocess.run(["doi2bib", doi], capture_output=True, text=True).stdout
@@ -75,8 +82,8 @@ def get_papers(content):
             print(paper)
         paper["authors"] = authors
         return paper
-    papers = Parallel(n_jobs=cpu_count())(delayed(task)(paper_data) for paper_data in tqdm.tqdm(data))
-    #papers = [task(paper_data) for paper_data in data]
+    #papers = Parallel(n_jobs=cpu_count())(delayed(task)(paper_data) for paper_data in tqdm.tqdm(data))
+    papers = [task(paper_data) for paper_data in tqdm.tqdm(data)]
     return papers 
 
 def find_duplicates(papers):
@@ -104,6 +111,7 @@ def main(args):
     api_url = f'https://pub.orcid.org/v3.0/{args.orcid}/works'
     response = requests.get(api_url)
     if response.status_code == 200:
+        print(f"Successfull response from orcid")
         content = response.content
     else:
         print(f"Warning, response has status code: {response.status_code}")

@@ -1,5 +1,71 @@
 [
     {
+        "last-modified-date": "2024-06-05T01:39:04.920Z",
+        "bibcode": "2024TNSCR1464....1M",
+        "title": "DEbass Transient Classification Report for 2024-05-10",
+        "type": "research-tool",
+        "journal": "Transient Name Server Classification Report",
+        "authors": [
+            "Martin, B.",
+            "Armstrong, P.",
+            "Auchettl, K.",
+            "Brout, D.",
+            "Dove, K.",
+            "Lidman, C.",
+            "Moller, A.",
+            "Tucker, B. E."
+        ]
+    },
+    {
+        "last-modified-date": "2024-06-05T01:39:04.917Z",
+        "bibcode": "2024TNSCR1545....1M",
+        "title": "DEbass Transient Classification Report for 2024-05-16",
+        "type": "research-tool",
+        "journal": "Transient Name Server Classification Report",
+        "authors": [
+            "Martin, B.",
+            "Armstrong, P.",
+            "Auchettl, K.",
+            "Brout, D.",
+            "Dove, K.",
+            "Lidman, C.",
+            "Moller, A.",
+            "Tucker, B. E."
+        ]
+    },
+    {
+        "last-modified-date": "2024-06-05T01:39:04.927Z",
+        "bibcode": "2024TNSCR.334....1L",
+        "title": "DEbass Transient Classification Report for 2024-02-03",
+        "type": "research-tool",
+        "journal": "Transient Name Server Classification Report",
+        "authors": [
+            "Lidman, C.",
+            "Martin, B.",
+            "Brout, D.",
+            "Armstrong, P.",
+            "Auchettl, K.",
+            "Dove, K.",
+            "Tucker, B. E."
+        ]
+    },
+    {
+        "last-modified-date": "2024-06-05T01:39:04.923Z",
+        "bibcode": "2024TNSCR.343....1L",
+        "title": "DEbass Transient Classification Report for 2024-02-04",
+        "type": "research-tool",
+        "journal": "Transient Name Server Classification Report",
+        "authors": [
+            "Lidman, C.",
+            "Martin, B.",
+            "Brout, D.",
+            "Armstrong, P.",
+            "Auchettl, K.",
+            "Dove, K.",
+            "Tucker, B. E."
+        ]
+    },
+    {
         "last-modified-date": "2024-01-27T01:04:44.355Z",
         "arxiv": "2401.02945",
         "bibcode": "2024arXiv240102945V",
